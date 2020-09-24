@@ -1,0 +1,37 @@
+<!-- <h5 class="motive-sub-heading">CHARACTERISTICS</h5>
+<hr width="100%;" style="margin-right:10%;">
+<ul>
+  <li *ngFor="let highlight of motive"><a class="nav-link active" data-toggle="tab" role="tab"
+      aria-controls="home">{{highlight|json}}</a></li>
+</ul>
+<h5 class="motive-sub-heading">WATCH-OUTS</h5>
+<hr width="100%;" style="margin-right:10%;">
+<ul>
+  <li *ngFor="let watchout of motive">
+    <a class="nav-link active" data-toggle="tab" role="tab" aria-controls="home">{{watchout.watchouts}}</a></li>
+</ul>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div>
+ -->
+
+ <p>{{ title }}</p>
+<p>{{ message }}</p>
+<h5 class="motive-sub-heading">CHARACTERISTICS</h5>
+  <hr width="100%;" style="margin-right:10%;">
+<ul >
+  <li  *ngFor="let highlight of dialogData"><a class="nav-link active" data-toggle="tab" role="tab" aria-controls="home">{{highlight.highlights}}</a></li>
+</ul>
+<h5 class="motive-sub-heading">WATCH-OUTS</h5>
+  <hr width="100%;" style="margin-right:10%;">
+  <ul >
+    <li *ngFor="let watchout of dialogData">
+        <a class="nav-link active" data-toggle="tab" role="tab" aria-controls="home">{{watchout.watchouts}}</a>
+    </li>
+  </ul>
+
+<button type="button" mat-raised-button 
+    (click)="dialogRef.close(true)">OK</button>
+<button type="button" mat-button 
+    (click)="dialogRef.close()">Cancel</button>   

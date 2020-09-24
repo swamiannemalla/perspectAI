@@ -1,0 +1,54 @@
+<div class="container-fluid dasboardHeader">
+  <div class="row">
+    <div class="col-sm-6">
+      <h2 style="width:237px;color:#4E1F8A;margin-left:24px;font-size: 36px;"><b>Assessments</b></h2>
+    </div>
+
+    <div class="col">
+      <mat-form-field class="col-sm-3">
+        <mat-label>Department</mat-label>
+        <mat-select matNativeControl>
+          <option value="salesExcutiveLean">Sales Excutive(Lean)</option>
+          <option value="salesExcutiveBasic">Sales Excutive(Basic)</option>
+          <option value="salesExcutiveHybrid">Sales Excutive(Hybrid)</option>
+          <option value="salesExcutivePro">Sales Excutive(Pro)</option>
+        </mat-select>
+      </mat-form-field>&nbsp;&nbsp;&nbsp;
+
+      <mat-form-field class="col-sm-3">
+        <mat-label>Role</mat-label>
+        <mat-select matNativeControl>
+          <option value="associate">Associate</option>
+          <option value="manager">Manager</option>
+        </mat-select>
+      </mat-form-field>&nbsp;&nbsp;&nbsp;
+      <button mat-raised-button class="create-custom-ass-btn" (click)="openDialog()">Create custom<br />
+        Assessment</button>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid dasboardHeader">
+  <div class="row">
+    <div class="col-md-12 col-md-3">
+      <div *ngFor="let department of dashboard_numbers" class="cardcontainer">
+
+        <mat-card class="countcard" (click)="AssessmentCustomUser(department.assessment_code)">
+          <mat-card-title class="cardtitle col-sm-12"><strong>{{ department.assessment_name }}</strong></mat-card-title>
+          <mat-card-subtitle class="col-sm-6 dept-level"><strong>{{ department.level }}</strong></mat-card-subtitle>
+          <mat-card-subtitle class="col-sm-6 cont">Status</mat-card-subtitle>
+          <mat-card-subtitle class="col-sm-6 cont">No.of Modules</mat-card-subtitle>
+          <mat-card-subtitle class="col-sm-6 cont status"><strong>{{ department.status }}</strong></mat-card-subtitle>
+          <mat-card-subtitle class="col-sm-6 cont module_count"><strong>{{ department.module_count }}</strong>
+          </mat-card-subtitle>
+          <mat-card-subtitle class="col-sm-6 timer "><img src="assets/timer.svg"
+              class="time-img"><strong>{{ department.duration }}</strong></mat-card-subtitle>
+          <mat-card-subtitle class="col-sm-6 ETD">ETD</mat-card-subtitle>
+
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<mat-spinner *ngIf=showLoader class="loader" [diameter]="40"></mat-spinner>

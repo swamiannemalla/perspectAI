@@ -1,0 +1,37 @@
+/* .popup-container{
+    width: 538px;
+    height: 518px;
+    box-shadow: 10px 10px 23px rgba(0, 0, 0, 0.16);
+    border-radius: 5px;
+    background-color: #ffffff;
+}*/
+.create-ass-btn{
+    width: 143px;
+    height: 51px;
+    border-radius: 5px;
+    background-color: #4e1f8a;
+    float:right;
+    color: #ffffff;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.15px;
+    line-height: 16px;
+
+} 
+.modal-title{
+    width: 176px;
+    height: 23px;
+    color: #3a3a3a;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.mat-form-field-infix {
+    display: block !important;
+    position: relative !important;
+    flex: auto !important;
+    min-width: 0 !important;
+    width: 465px !important;
+}

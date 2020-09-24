@@ -1,0 +1,325 @@
+<div class="container">
+    <div class="row" style="padding: 20px;">
+      <a style="width: 80px;height: 25px;color: #707070;font-family: Montserrat;font-size: 20px;font-weight: 400;position: relative;right: 172px;"
+        routerLink="/portal/people" routerLinkActive="active"> < &nbsp; Back</a>
+      <h3
+        style="width:auto;height: 50px;color: #1e1e1e;font-family: Montserrat;font-size: 40px;font-weight: 400;position: relative;right: 254px;top: 28px;">
+        {{playerObject}}</h3>
+    </div>
+  </div>
+  
+  <button mat-raised-button class="download-rpt-btn">Download<br />Report</button>
+       
+<mat-tab-group dynamicHeight>
+  <mat-tab label="Motives">
+    <div>
+        <p class="statement">{{tempmotive.motives["statement"]}}</p> 
+    </div>
+        
+        <!-- let motive of motivesData" [title]="motive?.name" -->            
+              <div class="container-fluid dasboardHeader">
+                <div class="row card-row">
+                  <div class="col-md-12 col-md-3">
+                    <div *ngFor="let motive of motivesData" class="cardcontainer">
+              
+                      <mat-card class="countcard" >
+                        <mat-card-title>{{motive.name}}</mat-card-title>
+                        <mat-card-subtitle>primary</mat-card-subtitle>                       
+                        <img class = "motive-img" src="assets/Autonomy.svg">
+                          <mat-card-content style="margin-top: 10px;">
+                              <p>
+                                {{tempmotive.motives.primary_1_behaviors.description}}<br>
+                                {{"-" + tempmotive.motives.primary_1_behaviors.points}}
+                              </p>
+                            </mat-card-content>
+                              <button class = "motive-button"  mat-raised-button (click)="openDialog()">Know More</button>                   
+                            </mat-card>
+                          </div>
+                        </div>
+                      </div>
+                    </div>  
+
+
+                    <!-- <div class="tp-wrapper">
+                      <div *ngFor="let motive of motivesData">
+                        <div class="tp-box" (click)="toggleFlip()" [@flipState]="flip">
+                          <div class="tp-box__side tp-box__front">
+                              <mat-card-title>{{motive.name}}</mat-card-title>
+                              <mat-card-subtitle>primary</mat-card-subtitle> 
+                              <img class = "motive-img" src="assets/Autonomy.svg">
+                              <mat-card-content style="margin-top: 10px;">
+                                  <li style="color: #707070;
+                                  font-family: Montserrat;
+                                  font-size: 16px;
+                                  font-weight: 400;">
+                                    {{tempmotive.motives.primary_1_behaviors.description}}</li><br>
+                                    <li>{{tempmotive.motives.primary_1_behaviors.points}}</li>
+                                </mat-card-content>
+                          </div>
+                          <div class="tp-box__side tp-box__back" style="color: #4e1f8a;font-family: Montserrat;font-size: 20px;font-weight: 500;">HIGHLIGHTS:
+                          <hr><li style="color: #707070;font-family: Montserrat;font-size: 16px;font-weight: 400;">{{motive.highlights}}</li>
+                          <hr><li style="color: #707070;font-family: Montserrat;font-size: 16px;font-weight: 400;">{{motive.watchouts}}</li>
+                          </div>
+                        </div>
+                      </div>
+                    </div> -->
+          
+            <!-- <h5 class="motive-sub-heading">CHARACTERISTICS</h5>
+            <hr width="100%;" style="margin-right:10%;">
+            <ul >
+              <li  *ngFor="let highlight of motive?.highlights"><a class="nav-link active" data-toggle="tab" role="tab" aria-controls="home">{{highlight}}</a></li>
+            </ul>
+            <h5 class="motive-sub-heading">WATCH-OUTS</h5>
+            <hr width="100%;" style="margin-right:10%;">
+            <ul >
+              <li *ngFor="let watchout of motive?.watchouts">
+                  <a class="nav-link active" data-toggle="tab" role="tab" aria-controls="home">{{watchout}}</a></li>
+            </ul>  -->
+          
+       
+       
+        
+       
+    <!-- <div *ngFor="let motive of motivesData" [title]="motive?.name">
+     
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" *ngFor="let highlight of motive?.highlights">
+          <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home">{{highlight}}</a>
+        </li>
+        <li class="nav-item" *ngFor="let watchout of motive?.watchouts">
+        
+        <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home">{{highlight}}</a></li>
+     </ul>
+    
+    <div class="tab-content">
+      <div class="tab-pane active" id="home" role="tabpanel"></div>
+      <div class="tab-pane" id="profile" role="tabpanel">..2.</div>
+      
+    </div>
+    
+    
+    </div> -->
+  </mat-tab>
+  <mat-tab label="Interview">
+    <div class="he">
+      <mat-drawer-container class="example-container" autosize>
+        <mat-drawer mode="side" opened class="example-sidenav" style="width: 25%">
+          <div style="color:grey;padding:6%;overflow:hidden;"><strong class="font">Questions asked to
+              candidate:</strong>
+          </div>
+          <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+            <div *ngFor="let item of VideoElement;let i = index" class="example-item">
+              <mat-list-item (click)="toggle(i)"
+                [ngStyle]="{'color': (i == currentvideoindex) ?  '#350f65' : '#A9A9A9'}">
+                <strong [ngStyle]="{'font-weight': (i == currentvideoindex) ?  'bold' : '500'}" class="font"
+                  style="align-content:center;font-size:15px;padding:6%;cursor:pointer;margin-bottom:22%">{{item.number}}.&nbsp;{{item.question}}</strong>
+              </mat-list-item>
+              <mat-divider style="margin-top:4%"></mat-divider>
+            </div>
+          </cdk-virtual-scroll-viewport>
+        </mat-drawer>
+
+        <mat-drawer-content class="mat-content-example" style="overflow: none;">
+          <div class="videoSection">
+            <ng-container *ngIf="show">
+              <iframe width="327" height="490" [src]="VideoElement[currentvideoindex].url | safe" frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+              </iframe>
+            </ng-container>
+          </div>
+
+          <div class="m-l330">
+            <ng-container *ngIf="show">
+              <mat-tab-group dynamicHeight="true">
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <strong class="font">AI Review</strong>
+                  </ng-template>
+                  <div style="display: flex;flex-direction: row;margin-top:5%;">
+                    <span style="display: flex;flex-direction: column">
+                      <b class="font" style="font-size: 16px; color: #707070 !important;">Department</b>
+                      <strong class="font" style="font-size: 26px;">Marketing</strong>
+                    </span>
+                    <span style="display: flex;flex-direction: column;margin-left:15%;">
+                      <b class="font" style="font-size: 16px;color: #707070 !important;">Position</b>
+                      <strong class="font" style="font-size: 26px;">Manager</strong>
+                    </span>
+                  </div>
+                  <div style="margin-top:2%;">
+                    <div class="col-md-4">
+                      <section>
+                        <b class="font" style="font-size: 20px;">Presentability:</b>
+                        <bar-rating style="position:relative;right:22%;" [readOnly]="true" [showText]="1" [rate]="5"
+                          [max]="10" [theme]="'horizontal'"></bar-rating>
+                      </section>
+                    </div>
+                    <div class="col-md-4">
+                      <section style="align-content: left">
+                        <b class="font">Calmness:</b>
+                        <bar-rating style="position:relative;right:22%;" [readOnly]="true" [showText]="1" [rate]="8"
+                          [max]="10" [theme]="'horizontal'"></bar-rating>
+                      </section>
+                    </div>
+                    <div class="col-md-4">
+                      <section>
+                        <b class="font">Excitement:</b>
+                        <bar-rating style="position:relative;right:22%;" [readOnly]="true" [showText]="1" [rate]="4"
+                          [max]="10" [theme]="'horizontal'"></bar-rating>
+                      </section>
+                    </div>
+                    <div class="col-md-4">
+                      <section>
+                        <b class="font">Attitude:</b>
+                        <bar-rating style="position:relative;right:22%;" [readOnly]="true" [showText]="1" [rate]="7"
+                          [max]="10" [theme]="'horizontal'"></bar-rating>
+                      </section>
+                    </div>
+                    <div class="font" style="font-size:18px;margin-top:2%;display:flex">
+                      <b class="font">Keywords Score:&nbsp;</b>
+                      <strong class="font">9/10</strong>
+                    </div>
+                    <mat-form-field style="width:100%;margin:0%;">
+                      <input matInput placeholder="Add a comment" value="">
+                    </mat-form-field>
+                  </div>
+                </mat-tab>
+                <mat-tab style="position:sticky;">
+                  <cdk-virtual-scroll-viewport itemSize="50" class="ets">
+                    <div *cdkVirtualFor="let item of hrcomponent">
+                      <ng-template mat-tab-label>
+                        <strong class="font">HR Review</strong>
+                      </ng-template>
+
+                      <div style="margin-top:2%;">
+                        <div class="font"
+                          style="color: #797979;font-family: Montserrat;font-size: 20px;font-weight: 400;padding-bottom: 20px;">
+                          Start rating
+                          the Candidate</div>
+                        <div class="col-md-4">
+                          <section>
+                            <b class="font">Presentability:</b>
+                            <bar-rating style="position:relative;right:22%;" [rate]="0" [showText]="1" [max]="10"
+                              [required]="true" [theme]="'horizontal'"></bar-rating>
+                          </section>
+                          <mat-form-field style="width:100%;margin:0%;">
+                            <input matInput placeholder="Add a comment" value="">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                          <section>
+                            <b class="font">Calmness:</b>
+                            <bar-rating style="position:relative;right:22%;" [rate]="0" [showText]="1" [max]="10"
+                              [theme]="'horizontal'"></bar-rating>
+                          </section>
+                          <mat-form-field style="width:100%;margin:0%;">
+                            <input matInput placeholder="Add a comment" value="">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                          <section>
+                            <b class="font">Excitement:</b>
+                            <bar-rating style="position:relative;right:22%;" [rate]="0" [showText]="1" [max]="10"
+                              [theme]="'horizontal'"></bar-rating>
+                          </section>
+                          <mat-form-field style="width:100%;margin:0%;">
+                            <input matInput placeholder="Add a comment" value="">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                          <section>
+                            <b class="font">Attitude:</b>
+                            <bar-rating style="position:relative;right:22%;" [rate]="0" [showText]="1" [max]="10"
+                              [theme]="'horizontal'"></bar-rating>
+                          </section>
+                          <mat-form-field style="width:100%;margin:0%;">
+                            <input matInput placeholder="Add a comment" value="">
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <mat-form-field class="example-full-width" style="width:100%;">
+                        <textarea matInput placeholder="Add your comments on the Candidate"></textarea>
+                      </mat-form-field>
+
+                    </div>
+                  </cdk-virtual-scroll-viewport>
+                  <strong><button mat-raised-button class="font"
+                      style="margin-left:70%;color:white;background-color:#350f65;margin-bottom: 4%">Submit</button></strong>
+                </mat-tab>
+              </mat-tab-group>
+
+            </ng-container>
+
+          </div>
+        </mat-drawer-content>
+      </mat-drawer-container>
+
+    </div>
+  </mat-tab>
+  <mat-tab label="Assessments" *ngIf = "tempmotive.cognitive.length>0">
+    <div class="behaviour">COGNITION</div>
+    
+    <mat-card class="assessment-card">
+        
+      <div class="container">
+        <div class="row mt-3">
+          <div class="col-md-4">
+           
+            <div  *ngFor="let learn of datakeys">
+                
+                <div class="factors" style="width: 1406px;
+                height: 35px;
+                background-color: #e4e4e4;
+                position: relative;
+                padding-left: 48%;
+                right: 147px;
+                line-height: 31px;
+                color: #383838;
+                font-family: Google Sans;
+                font-size: 17px;
+                font-weight: 700;">{{learn}}</div> 
+                  <div class="row mt-3" *ngFor="let obj of dataArr[learn]">
+                  <div class="col-md-4">
+                    
+                    <!-- <p>{{learn.name}}</p> -->
+                    <p style="color: #9b9b9b; font-family: Google Sans;font-size: 13px;font-weight: 400;width:160px;text-align: center;position: relative;">{{obj.name}}</p>
+                    </div>
+                    <div class="col-md-8" id="bar" style="padding-left: 201px;">
+                      <ngb-progressbar showValue="true" type="success" [value]="obj.score"></ngb-progressbar>
+                    </div>
+                    
+      
+                </div>     
+                </div>
+          </div>
+          <div class="col-md-8 cols-center">
+            <h6 style="position: relative;left: 31px;">Low</h6>
+            <h6>Moderate</h6>
+            <h6 style="position: relative;right: 29px;">High</h6>
+          </div>
+          <div id="vl"></div>
+        <div id="v2"></div>
+        <div id="v3"></div>
+        <div id="v4"></div>
+        </div>
+        <!-- <div class="row mt-3" *ngFor="let learn of getData?.EA">   
+          <div class="col-md-4">
+            <p>{{learn.name}}</p>
+          </div>
+          <div class="col-md-8">
+            <ngb-progressbar showValue="true" type="success" [value]="learn.score"></ngb-progressbar>
+          </div>
+       
+        </div> -->
+            
+             
+      </div>      
+    </mat-card>
+    <div class="grade">
+      <p style="float: left;left: 29px;position: relative;">0</p>
+      <p style="left: 134px;position: relative;">3</p> 
+      <p style="position: relative;left: 381px;bottom: 29px;">7</p> 
+      <p style="position: relative;left: 617px;bottom: 59px;">10</p>
+    </div>
+  </mat-tab><!-- 
+  <h3>{{playerObject}}</h3> -->
+</mat-tab-group>

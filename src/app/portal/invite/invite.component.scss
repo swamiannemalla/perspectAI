@@ -1,0 +1,187 @@
+.fillinvitation {
+  margin-top: 0;
+}
+
+.invite-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  width: 100%;
+}
+
+.invite-form .invite-fields {
+  position: relative;
+  padding: 0 12% 0 12%;
+  width: 40%
+}
+
+.invite-btn {
+  position: absolute;
+  margin-left: 92%;
+  background-color: #4e1f8a;
+  color: #FFF;
+  cursor: pointer;
+  // width: 80px;
+  font-size: 3em;
+  font-weight: 100;
+}
+
+.invite-icon {
+  color: #4e1f8a;
+  font-size: 3em;
+}
+
+table {
+  width: 60%;
+  margin: auto;
+}
+
+.submit-btn {
+  position: fixed;
+  background-color: #4e1f8a;
+  color: #FFF;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 15px;
+  margin-right: 15px;
+}
+
+.bulkupload-btn {
+  position: fixed;
+  background-color: #4e1f8a;
+  color: #FFF;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 15px;
+  margin-right: 140px;
+
+}
+
+.template-btn {
+  position: fixed;
+  background-color: #4e1f8a;
+  color: #FFF;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 15px;
+  margin-right: 262px;
+
+}
+
+.delete-btn {
+  cursor: pointer;
+}
+
+.selectassessment {
+  display: flex;
+  // width: 80%;
+  padding: 10px;
+  margin-left: 80%;
+
+  .assessmentdropdown {
+    width: 100%;
+  }
+}
+
+.invite-table {
+  height: 40vh;
+  height: 60vh;
+  overflow: auto;
+}
+
+.loader {
+  position: absolute;
+  margin: auto;
+  bottom: 50%;
+  left: 50%;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #4e1f8a;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #350f65;
+}
+
+.mat-row:nth-child(even){
+  background-color: #FFF;
+  }
+
+.mat-row:nth-child(odd){
+  background-color: #F9F9F9;
+  }
+
+th {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+i.delete-icon {
+  color: #4e1f8a
+}
+
+
+/* modules styles */
+
+.xyz{
+  height: 450px;
+  width: 483px;
+  float: left;
+  margin: 25px;    
+  box-shadow: 0 3px 5px rgba(107, 97, 112, 0.16);
+  background-color: #ffffff;
+}
+
+.button{
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+}
+.header{
+  /* Style for "Modules" */
+width: 159px;
+height: 45px;
+color: #4e1f8a;
+font-family: Montserrat;
+font-size: 36px;
+font-weight: 600;
+padding:20px;
+}
+.example-full-width{
+  padding:20px;
+}
+.container{
+  padding: 20px;
+}
+.suggested-text{
+  padding: 20px;
+}
+
+.module-btn{
+  top: 151px;
+  position: relative;
+  color:#4e1f8a;
+  width: 121px;
+  height: 36px;
+  border-radius: 5px;
+  border: 1px solid #4e1f8a;
+  left:20px
+}

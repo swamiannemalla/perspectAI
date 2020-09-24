@@ -1,0 +1,47 @@
+<div class="blue-bg">
+  <!-- <img class="braille-bg" src="../../assets/side-braille.svg" alt=""> -->
+  <div class="login-container">
+    <div class="logo">
+      <p>PERSPECT AI</p>
+    </div>
+    <form class="login-form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <!-- <mat-card-title class="login-title">Please Identify yourself</mat-card-title> -->
+      <mat-form-field class="login-fields">
+        <input matInput type="text" formControlName="login_id" placeholder="Registered Email ID">
+        <mat-error *ngIf="profileForm.get('login_id').hasError('required')">
+          Please enter a User ID
+        </mat-error>
+      </mat-form-field><br /><br />
+      <mat-form-field class="login-fields">
+        <input matInput type="password" formControlName="passwd" placeholder="Password">
+        <mat-error *ngIf="profileForm.get('passwd').hasError('required')">
+          Please enter a password
+        </mat-error>
+      </mat-form-field><br /><br />
+      <mat-checkbox class="example-margin" ></mat-checkbox>
+
+      <!-- <mat-radio-button class="example-radio-button" [value]="">
+        
+
+      </mat-radio-button> -->
+      <p
+        style="font-family: Montserrat;font-size: 14px;font-weight: 400;letter-spacing: 0.14px;line-height: 37px;position: relative;bottom: 36px;left: 50px;">
+        Remember me</p>
+
+      <br /><br />
+
+
+      <button class="login-btn" type="submit" mat-raised-button [disabled]="disableButton">Sign-In</button>
+      <div class="form-group">
+        <a style="color: #9a9a9a" [routerLink]="['/forgot']" class="btn btn-link">Forgot Password?</a>
+      </div>
+
+
+      <div *ngIf="showloader" class="login-loader">
+        <mat-spinner [diameter]="30"></mat-spinner>
+      </div>
+
+    </form>
+    <p class="error-message">{{ errormessage }}</p>
+  </div>
+</div>

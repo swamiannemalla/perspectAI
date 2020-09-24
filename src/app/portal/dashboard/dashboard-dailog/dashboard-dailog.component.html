@@ -1,0 +1,35 @@
+<div class="popup-container">
+  <h4 class="modal-title">Create Assessment</h4>
+  <form #dialogForm="ngForm" >
+  <mat-form-field>
+    <input matInput [(ngModel)]="assessmentName" name="assessmentName" placeholder="Assessment Name">
+  </mat-form-field><br /><br />
+  <mat-form-field>
+    <mat-label>Department</mat-label>
+    <mat-select [(ngModel)]="department" name="department">
+      <mat-option *ngFor="let deot of departments"  [value]="deot.value">
+        {{deot.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br /><br />
+  <mat-form-field>
+    <mat-label>Job Level</mat-label>
+    <mat-select [(ngModel)]="jobLevel" name="jobLevel">
+      <mat-option *ngFor="let jobl of jobLevels" [value]="jobl.value">
+        {{jobl.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br /><br />
+  <mat-form-field>
+    <mat-label>Job Role</mat-label>
+    <mat-select [(ngModel)]="jobRole" name="jobRole">
+      <mat-option *ngFor="let jobr of jobRoles" [value]="jobr.value">
+        {{jobr.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button class="create-ass-btn" (click)="AssessmentCustomUser(dialogForm.value)">Create</button>
+  </form>
+</div>

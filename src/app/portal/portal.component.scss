@@ -1,0 +1,133 @@
+.topbar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.profile_details {
+  position: absolute;
+  margin-right: 150px;
+  right: 0;
+}
+
+.user_profile_name {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.29;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.user_profile_company {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: left;
+  color: #020d1d;
+}
+
+.logout-btn {
+  position: absolute;
+  margin-right: 30px;
+  right: 0;
+  background-color: #4e1f8a;
+  color: #FFF;
+  // width: 2%;
+  cursor: pointer;
+  width: 80px;
+}
+
+.toolbar {
+  position: relative;
+  background-color: #FFF;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  z-index: 1;
+  height: 7.5vh;
+}
+
+.toolbar .logo {
+  // width: 4%;
+  margin-left: 4%;
+  font-family: Medel;
+  font-size: 22px;
+  font-weight: 600;
+  // font-style: normal;
+  // font-stretch: normal;
+  line-height: 1.23;
+  // letter-spacing: normal;
+  text-align: left;
+  color: #4e1f8a;
+}
+
+.body-container {
+  height: 92.5vh;
+  z-index: 0;
+}
+
+.sidepanel {
+  /* margin: 0;
+  width: 9%;
+  padding: 0px;
+  background-color: #4e1f8a;
+  box-shadow: 1px 2px 5px 3px rgba(0,0,0,.26); */
+  width: 280px;
+  height: 1882px;
+  background-color: #4e1f8a;
+}
+
+.sidepanel-elements {
+  list-style-type: none;
+  text-align: center;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.29;
+  letter-spacing: normal;
+}
+
+.sidepanel-elements li {
+  width: 100%;
+}
+
+.sidepanel-elements li a {
+  display: block;
+  width: 100%;
+  color: #FFF;
+  text-decoration: none;
+  padding: 10px 0 10px 0px;
+  transition: background-color 0.5s ease-out;
+}
+
+// .sidepanel-elements li a:hover {
+//   background-color: #350f65;
+//   transition: background-color 0.5s ease-out;
+// }
+
+.router-link-active {
+  transition: background-color 0.5s ease;
+  background-color: #350f65;
+  // transition: background-color 1s ease-out;
+}
+
+.navImg{
+  position: relative;
+    right: 33px;
+    padding-left: 74px;
+}
+
+
+.navT{
+  text-align: center;
+  position: relative;
+  top: 42px;
+  
+}

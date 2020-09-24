@@ -1,0 +1,35 @@
+<div class="blue-bg">
+  <!-- <img class="braille-bg" src="../../assets/side-braille.svg" alt=""> -->
+  <div class="forgot-container">
+    <div class="logo">
+      <p>PERSPECT AI</p><br/><br/>
+      <p style="color: #3a3a3a;font-family: Montserrat;font-size: 14px;font-weight: 400;">Please enter a password to login </p>
+    </div>
+    
+    
+    <form class="forgot-form" [formGroup]="profileForm" >
+        <!-- (ngSubmit)="onSubmit()" -->
+      <!-- <mat-card-title class="login-title">Please Identify yourself</mat-card-title> -->
+      <mat-form-field class="forgot-fields">
+        <input matInput type="text" formControlName="login_id" placeholder="Enter New Password">
+        <mat-error *ngIf="profileForm.get('login_id').hasError('required')">
+          Please enter a User ID
+        </mat-error>
+      </mat-form-field><br /><br />
+      <mat-form-field class="forgot-fields">
+        <input matInput type="password" formControlName="passwd" placeholder="Re-enter New Password">
+        <mat-error *ngIf="profileForm.get('passwd').hasError('required')">
+          Please enter a password
+        </mat-error>
+      </mat-form-field><br /><br />
+      <button class="forgot-btn" type="submit" mat-raised-button [disabled]="disableButton">Submit</button>
+      <div class="form-group">
+        <a (click)="gotoLogin()" class="btn btn-link">Login</a>
+      </div>
+      <div *ngIf="showloader" class="forgot-loader">
+        <mat-spinner [diameter]="30"></mat-spinner>
+      </div>
+    </form>
+    <p class="error-message">{{ errormessage }}</p>
+  </div>
+</div>

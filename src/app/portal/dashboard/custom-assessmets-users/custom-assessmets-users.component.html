@@ -1,0 +1,273 @@
+<h1 class="group-heading">{{assessmentObject.assessmentName}}</h1>
+
+<h6 class="group-sub-heading">Assessments >{{assessmentObject.assessmentName}} </h6>
+<mat-tab-group>
+  <mat-tab label="Modules">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Search for traits and skills to be tested" [(ngModel)]="recommendationInput"
+        value="Leadership" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+    </mat-form-field>
+    <div class="row container">
+      <mat-chip-list #chipList aria-label="Recomm selection">
+        <mat-chip *ngFor="let recomm of recommendations" [selectable]="selectable" [removable]="removable"
+          (removed)="changeInputValue(recomm)">
+          {{recomm}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        &nbsp;&nbsp;
+      </mat-chip-list>
+    </div>
+    <h4 class="suggested-text"><strong>Suggested Modules</strong></h4>
+    <!-- <div class="module-card"> -->
+    <!--  col-md-8 -->
+    <mat-card class="xyz">
+      <img mat-card-image src="assets/shield.svg">
+      <mat-card-title>Shield</mat-card-title>
+      <mat-card-content> Primary card content. Intended for blocks of text
+        <mat-card-actions>
+          <button mat-button class="module-btn" (click)="openPopup()">view</button>
+        </mat-card-actions>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="xyz">
+      <!--  col-md-4 -->
+      <img mat-card-image src="assets/Quest.svg">
+      <mat-card-title>The Quest</mat-card-title>
+      <mat-card-content> Primary card content. Intended for blocks of text
+        <mat-card-actions>
+          <button mat-button class="module-btn">view</button>
+        </mat-card-actions>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="xyz">
+      <img mat-card-image src="assets/SalesRepresentative.svg">
+      <mat-card-title>Shield</mat-card-title>
+      <mat-card-content> Primary card content. Intended for blocks of text
+        <mat-card-actions>
+          <button mat-button class="module-btn" (click)="openPopup()">view</button>
+        </mat-card-actions>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="xyz">
+      <img mat-card-image src="assets/motivation.svg">
+      <mat-card-title>Shield</mat-card-title>
+      <mat-card-content> Primary card content. Intended for blocks of text
+        <mat-card-actions>
+          <button mat-button class="module-btn" (click)="openPopup()">view</button>
+        </mat-card-actions>
+      </mat-card-content>
+    </mat-card>
+    <!-- </div> -->
+  </mat-tab>
+
+  <mat-tab label="Invite">
+    <div class="selectassessment">
+      <mat-form-field class="assessmentdropdown">
+        <mat-label>Select Assessment</mat-label>
+        <mat-select [(value)]="assessmentfilter" (selectionChange)="updateTable($event)"
+          matTooltip="Select the Assessment that you want to assign">
+          <mat-option *ngFor="let assessment of assessments" [value]="assessment.value">
+            {{assessment.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-card class="fillinvitation">
+      <form class="invite-form" [formGroup]="inviteForm" (ngSubmit)="onAdd()">
+        <i class="material-icons invite-icon">
+          email
+        </i>
+        <mat-form-field class="invite-fields">
+          <input matInput (focus)="formInputChangedName()" type="text" formControlName="name"
+            placeholder="Invitee Name">
+          <mat-error
+            *ngIf="inviteForm.get('name').hasError('required') || inviteForm.get('name').hasError('minLength')">
+            {{ getErrorMessageName() }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="invite-fields">
+          <input matInput (focus)="formInputChangedEmail()" type="text" formControlName="emailId"
+            placeholder="Invitee Email ID">
+          <mat-error
+            *ngIf="inviteForm.get('emailId').hasError('required') || inviteForm.get('emailId').hasError('minLength') || inviteForm.get('emailId').hasError('email')">
+            {{ getErrorMessageEmail() }}
+          </mat-error>
+        </mat-form-field>
+        <button class="invite-btn" type="submit" mat-fab matTooltip="Add Candidate to the List of Invitees">+</button>
+        <!-- <button class="invite-btn" type="submit" mat-fab [disabled]="disable_invite_submit_name || disable_invite_submit_email">+</button> -->
+      </form>
+    </mat-card>
+
+    <br />
+
+    <div class="invite-table" [hidden]="!showTable">
+      <table mat-table [dataSource]="invitesList" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let invitee; let i = index;"> {{ invitee.name }} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email ID </th>
+          <td mat-cell *matCellDef="let invitee; let i = index;"> {{ invitee.emailId }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let invitee; let i = index;">
+            <p class='delete-btn'> <i (click)=deleteTableElement(i) class="material-icons delete-icon">
+                delete
+              </i></p>
+            <!-- <button (click)=deleteTableElement(i) mat-raised-button >Delete</button> -->
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+    <mat-spinner *ngIf=showLoader class="loader" [diameter]="40"></mat-spinner>
+
+    <a href="../../../assets/upload_template.csv"><button class="template-btn" type="button" mat-raised-button
+        matTooltip="CSV Template to be used for bulk upload">Download Template</button></a>
+    <mat-card class="drag-drap">
+      <ngx-file-picker [adapter]="adapter" [enableCropper]="true" (click)="fileImportInput.click()">
+      </ngx-file-picker>
+      <input hidden (change)="fileChangeListener($event)" (click)="fileImportInput.value = null" #fileImportInput
+        type="file" accept='.csv' id="txtFileUpload">
+
+    </mat-card>
+
+    <button (click)="sendInvites()" class="submit-btn" mat-raised-button [disabled]=""
+      matTooltip="Assign the assessment to the Invitees and send emails">Send Invites</button>
+
+
+
+  </mat-tab>
+
+  <mat-tab label="Report">
+
+    <!-- <mat-tab-group mat-align-tabs="center" class="dashboardtabs"> -->
+    <!-- <mat-tab label="Registered"> -->
+    <!-- <div class="menus">
+                <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                  </mat-form-field>
+                  <mat-form-field>
+                      <mat-label>Choose Assessment</mat-label>
+                      <mat-select [(value)]="reportAssessmentfilter" (selectionChange)="updateTable($event)" matTooltip="Select an Assessment to filter results">
+                        <mat-option *ngFor="let assessment of assessments" [value]="assessment.value">
+                          {{assessment.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+              </div> -->
+    <div class="menus">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+    </div>
+    <div class="tablediv mat-elevation-z8">
+      <table class="statustable" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let data"> {{data.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email_id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email ID </th>
+          <td mat-cell *matCellDef="let data"> {{data.email_id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+          <td mat-cell *matCellDef="let data">
+            <i *ngIf="data.status === 'registered'" style="color: #FB5454" class="material-icons status-sym">
+              fiber_manual_record</i> <span *ngIf="data.status === 'registered'">&nbsp; Registered </span>
+            <i *ngIf="data.status === 'ongoing'" style="color: #FFCA2C" class="material-icons status-sym">
+              fiber_manual_record</i> <span *ngIf="data.status === 'ongoing'">&nbsp; Ongoing </span>
+            <i *ngIf="data.status === 'complete'" style="color: #00CBBD" class="material-icons status-sym">
+              fiber_manual_record</i> <span *ngIf="data.status === 'complete'">&nbsp; Completed </span>
+            <i *ngIf="data.status == undefined" style="color: grey" class="material-icons status-sym">
+              fiber_manual_record</i> <span *ngIf="data.status == undefined">&nbsp; Pending </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="report">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Report </th>
+          <td mat-cell *matCellDef="let data">
+
+            <button class="reportbtn" *ngIf="selectedindex == data.email_id?false:true" [ngStyle]="{'color':data.status === 'complete' ? '#f9f9f9' : '#383838' ,'background-color':data.status === 'complete' ? '#4e1f8a' : '#f9f9f9','font-family':data.status === 'complete' ? 'Montserrat' : 'Montserrat'} " mat-raised-button
+              id={{data.email_id}}  (click)=getReport(data)
+              [disabled]="false">{{ data.status == 'complete'?"Report":"Notify" }}</button>
+
+            <!-- <button class="reportbtn" *ngIf="selectedindex == data.email_id?false:true" mat-raised-button id = {{data.email_id}} (click)=getReport(data.email_id) [disabled]="data.status != 'complete'?true:false">{{ data.status == 'complete'?"Report":"Notify" }}</button> -->
+
+
+
+            <mat-spinner style="margin-left: 23px;" id="data.email_id" *ngIf="selectedindex == data.email_id?true:false"
+              class="report-loader" [diameter]="30"></mat-spinner>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="reportsDisplayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: reportsDisplayedColumns;"></tr>
+      </table>
+      <mat-spinner *ngIf=showTableLoader class="loader" [diameter]="40"></mat-spinner>
+    </div>
+    <!-- <div class="paginationdiv">
+                  <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20, 40, 60]" showFirstLastButtons></mat-paginator>
+              </div> -->
+    <!-- </mat-tab> -->
+
+    <mat-tab class="pendingtab" label="Pending">
+      <div class="menus">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilterPending($event.target.value)" placeholder="Search">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Assessment Name</mat-label>
+          <mat-select [(value)]="reportAssessmentfilter" (selectionChange)="updateTable($event)"
+            matTooltip="Select an Assessment to filter results">
+            <mat-option *ngFor="let assessment of assessments" [value]="assessment.value">
+              {{assessment.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div style="height: 65vh;" class="tablediv mat-elevation-z8">
+        <!-- <mat-progress-bar *ngIf=showTableLoader class="loader" mode="indeterminate"></mat-progress-bar> -->
+        <table style="width: 50%;" class="pendingtable" mat-table [dataSource]="pendingemails" matSort
+          class="mat-elevation-z8">
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <td mat-cell *matCellDef="let data"> {{data.name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="email_id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email ID </th>
+            <td mat-cell *matCellDef="let data"> {{data.email_id}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="reportsDisplayedColumnsPending; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: reportsDisplayedColumnssPending;"></tr>
+        </table>
+        <mat-spinner *ngIf=showTableLoader class="loader" [diameter]="40"></mat-spinner>
+      </div>
+    </mat-tab>
+    <!-- </mat-tab-group> -->
+    <div class="paginationdiv">
+      <mat-paginator class="paginator" [pageSizeOptions]="[20, 40, 60]" showFirstLastButtons></mat-paginator>
+    </div>
+
+  </mat-tab>
+</mat-tab-group>

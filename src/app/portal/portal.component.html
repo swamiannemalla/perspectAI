@@ -1,0 +1,27 @@
+<mat-toolbar class="toolbar">
+  <!-- <img class="logo" src="../../assets/Logo_Latest.svg" alt=""> -->
+  
+  <p class="logo"><a [routerLink]="['dashboard']" style="color: #6f42c1;text-decoration: none;" >PERSPECT AI</a></p>
+  <div class="profile_details">
+    <p class="user_profile_name">{{ user_name }}</p>
+    <p class="user_profile_company">{{ org_name }}</p>
+  </div>
+  <button (click)=logout() class="logout-btn" mat-raised-button>Logout</button>
+  <!-- <img class="logout-btn" src="../../assets/baseline-exit_to_app-24px.svg" alt="" (click)=logout()> -->
+</mat-toolbar>
+<mat-drawer-container class="body-container">
+    <mat-drawer class="sidepanel" mode="side" opened>
+        
+      <ul class="sidepanel-elements">
+          
+        <li class="navT"> <a matRipple [routerLink]="['dashboard']" routerLinkActive="router-link-active"><!-- <img class ="navImg" src="assets/assessment.svg"/> --><b>ASSESSMENTS</b></a> </li>
+        <li class="navT">  <a matRipple [routerLink]="['invite']" routerLinkActive="router-link-active"><!-- <img class ="navImg" src="assets/assessment.svg"/> --><b>MODULES</b></a> </li>
+        <li class="navT">  <a matRipple [routerLink]="['people']" routerLinkActive="router-link-active"><!-- <img class ="navImg" src="assets/assessment.svg"/> --><b>PEOPLE</b></a> </li>
+        <li class="navT">  <a matRipple [routerLink]="['settings']" routerLinkActive="router-link-active"><!-- <img class ="navImg" src="assets/assessment.svg"/> --><b>SETTINGS</b></a> </li>
+      </ul>
+    </mat-drawer>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>
+  
